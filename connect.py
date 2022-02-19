@@ -14,7 +14,7 @@ def connect():
 		
         # create a cursor
         cur = conn.cursor()
-        postgreSQL_select_Query = 'SELECT * FROM power_energydata WHERE id=(SELECT max(id) FROM power_energydata)'
+        postgreSQL_select_Query = 'SELECT id, w_timestamp FROM power_energydata WHERE id=(SELECT max(id) FROM power_energydata)'
         
         
     # execute a statement
@@ -39,6 +39,7 @@ def connect():
         if conn is not None:
             conn.close()
             print('Database connection closed.')
+            return latest_record
 
 
 if __name__ == '__main__':
